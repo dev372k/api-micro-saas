@@ -1,3 +1,7 @@
 fastapi
+tiktoken
 uvicorn[standard]
 pydantic-settings
+langchain
+langchain-community
+langchain-openrouter

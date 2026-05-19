@@ -1,11 +1,9 @@
 from fastapi import APIRouter
-from models.schemas import OptimizeRequest
+from models.requests.optimize_request import OptimizeRequest
+from utils.optimizer import optimized_text
 
 router = APIRouter()
 
 @router.post("/optimize")
 def optimize_text(req: OptimizeRequest):
-    return {
-        "original_text": req.text,
-        "optimized_text": f"Optimized ({req.mode}): {req.text[:50]}...",
-    }
+    return optimized_text(req.text, mode=req.mode, model=req.model)
