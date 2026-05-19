@@ -1,7 +1,7 @@
 from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
-    APP_NAME: str = ""
+    APP_NAME: str = "default"
     VERSION:str = ""
     ENVIRONMENT: str = ""
     LOG_LEVEL: str = ""
