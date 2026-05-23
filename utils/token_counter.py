@@ -1,23 +1,36 @@
 import tiktoken
 
-# ---------- OpenAI encodings ----------
 OPENAI_MODELS = {
+    "gpt": "gpt-4o-mini",
     "gpt-4o-mini": "gpt-4o-mini",
     "gpt-4o": "gpt-4o",
-    "gpt-3.5": "gpt-3.5-turbo"
+    "gpt-3.5": "gpt-3.5-turbo",
+    "gpt-3.5-turbo": "gpt-3.5-turbo"
 }
 
-def count_openai_tokens(text: str, model: str = "gpt-4o-mini") -> int:
-    encoding = tiktoken.encoding_for_model(model)
+
+def count_openai_tokens(text: str, model: str = "gpt") -> int:
+    model = model.lower()
+
+    resolved_model = OPENAI_MODELS.get(
+        model,
+        "gpt-4o-mini"
+    )
+
+    encoding = tiktoken.encoding_for_model(resolved_model)
+
     return len(encoding.encode(text))
+
 
 def estimate_claude_tokens(text: str) -> int:
     return int(len(text.split()) * 1.3)
 
+
 def estimate_mistral_tokens(text: str) -> int:
     return int(len(text.split()) * 1.1)
 
-def count_tokens(text: str, model: str = "gpt-4o-mini") -> dict:
+
+def count_tokens(text: str, model: str = "gpt") -> dict:
     model = model.lower()
 
     if model.startswith("gpt"):
@@ -30,7 +43,6 @@ def count_tokens(text: str, model: str = "gpt-4o-mini") -> dict:
         tokens = estimate_mistral_tokens(text)
 
     else:
-        # fallback
         tokens = len(text.split())
 
     return {
