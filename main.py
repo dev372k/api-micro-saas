@@ -25,7 +25,7 @@ def health():
         "status": "ok"
     }
 
-@app.get("/webhook")
+@app.post("/webhook")
 def webhook():
     logger.info("Webhook endpoint called")
     return {
