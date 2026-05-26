@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from routes.routes import router
 from core.config import settings
 from core.logging import logger
@@ -26,8 +26,12 @@ def health():
     }
 
 @app.post("/webhook")
-def webhook():
+async def webhook(request: Request):
+    payload = await request.json()
+
     logger.info("Webhook endpoint called")
+    logger.info(f"Webhook payload: {payload}")
+
     return {
         "message": "Webhook received"
     }
