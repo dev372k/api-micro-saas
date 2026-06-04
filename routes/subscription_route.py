@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Request
-from services.subscription_service import get_all_subscriptions
+from repositories.subscription_repository import get_all_subscriptions
 
 subscription_router = APIRouter(prefix="/subscriptions", tags=["subscriptions"])
 

@@ -2,7 +2,7 @@ from core.database import client
 from schemas.subscription_schema import Subscription
 
 db = client.get_default_database()
-collection = db["payments"]
+collection = db["subscriptions"]
 
 async def upsert_subscription(data: Subscription):
     await collection.update_one(

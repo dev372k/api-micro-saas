@@ -6,8 +6,8 @@ from schemas.card_schema import Card
 from commons.enums import SubscriptionEvent, PaymentEvent
 from schemas.subscription_schema import Subscription
 from schemas.payment_schema import Payment
-from services.subscription_service import upsert_subscription
-from services.payment_service import upsert_payment
+from repositories.subscription_repository import upsert_subscription
+from repositories.payment_repository import upsert_payment
 
 webhook_router = APIRouter()
 
@@ -15,7 +15,8 @@ webhook_router = APIRouter()
 async def webhook(req: Request):
     body = await req.json()
     event_type = body["type"]
-
+    print(f"Received webhook event: {event_type}")
+    
     if event_type in SubscriptionEvent:
         wh_response = Subscription(
             business_id=body["business_id"],

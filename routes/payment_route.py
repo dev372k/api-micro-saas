@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from services.payment_service import get_all_payments
+from repositories.payment_repository import get_all_payments
 
 payment_router = APIRouter(prefix="/payments", tags=["payments"])
 
