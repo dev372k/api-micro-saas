@@ -7,6 +7,7 @@ class Settings(BaseSettings):
     LOG_LEVEL: str = ""
     MONGODB_URI: str = ""
     MONGODB_DB_NAME: str = ""
+    X_API_KEY: str = ""
 
     class Config:
         env_file = ".env"
