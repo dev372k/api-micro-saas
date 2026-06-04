@@ -1,7 +1,11 @@
 fastapi
-tiktoken
 uvicorn[standard]
 pydantic-settings
-langchain
-langchain-community
-langchain-openrouter
+httpx 
+google-auth 
+google-auth-oauthlib
+stripe
+motor
+pymongo
+dodopayments
+certifi
