@@ -6,9 +6,11 @@ from routes.payment_route import payment_router
 from routes.webhook_route import webhook_router
 from core.config import settings
 from core.logging import logger
+from middlewares.auth import AuthMiddleware
 
 app = FastAPI(title=settings.APP_NAME)
 
+app.add_middleware(AuthMiddleware)
 app.include_router(user_router)
 app.include_router(subscription_router)
 app.include_router(payment_router)

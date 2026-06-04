@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 from starlette.middleware.base import BaseHTTPMiddleware
 from core.config import settings
 
-class RapidAPIAuthMiddleware(BaseHTTPMiddleware):
+class AuthMiddleware(BaseHTTPMiddleware):
 
     async def dispatch(self, request: Request, call_next):
 
@@ -18,17 +18,17 @@ class RapidAPIAuthMiddleware(BaseHTTPMiddleware):
         if request.url.path in public_paths:
             return await call_next(request)
 
-        rapidapi_proxy_secret_key = request.headers.get("X-RapidAPI-Proxy-Secret")
+        x_api_key = request.headers.get("X-API-Key")
 
-        if not rapidapi_proxy_secret_key:
+        if not x_api_key:
             return JSONResponse(
                 status_code=401,
-                content={"detail": "Missing X-RapidAPI-Proxy-Secret"}
+                content={"detail": "Missing X-API-Key header"}
             )
 
-        expected_key = settings.RAPIDAPI_PROXY_SECRET_KEY
+        expected_key = settings.X_API_KEY
 
-        if rapidapi_proxy_secret_key != expected_key:
+        if x_api_key != expected_key:
             return JSONResponse(
                 status_code=403,
                 content={"detail": "Invalid API key"}
