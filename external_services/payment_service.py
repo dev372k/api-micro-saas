@@ -3,7 +3,7 @@ from commons.constant import PRODUCTS
 from dodopayments import DodoPayments
 
 client = DodoPayments(
-    bearer_token=settings.DODO_PAYMENTS_API_KEY,
+    bearer_token=settings.DODO_API_KEY,
     environment="test_mode",  # defaults to "live_mode"
 )
 
