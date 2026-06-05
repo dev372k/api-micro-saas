@@ -17,7 +17,7 @@ async def payment_webhook(req: Request):
     event_type = body["type"]
 
     print(f"Received webhook event: {event_type}")
-    
+
     if event_type in PaymentEvent:
         wh_response = Payment(
             business_id=body["business_id"],
@@ -27,12 +27,9 @@ async def payment_webhook(req: Request):
             currency=body["data"]["currency"],
             status=body["data"]["status"],
             total_amount=body["data"]["total_amount"],
+            subscription_id=body["data"]["subscription_id"],
             invoice_id=body["data"]["invoice_id"],
             invoice_url=body["data"]["invoice_url"],
-            cart=Cart(
-                product_id=body["data"]["product_cart"][0]["product_id"],
-                quantity=body["data"]["product_cart"][0]["quantity"]
-            ),
             card=Card(
                 card_holder_name=body["data"]["card_holder_name"],
                 card_issuing_country=body["data"]["card_issuing_country"],

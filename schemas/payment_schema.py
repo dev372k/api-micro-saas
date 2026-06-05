@@ -5,7 +5,8 @@ from schemas.card_schema import Card
 from schemas.cart_schema import Cart
 
 class Payment(BaseModel):
-    payment_id: Optional[str] = None  
+    payment_id: str 
+    subscription_id: str
     invoice_id: str
     invoice_url: str
     business_id: str
@@ -14,6 +15,6 @@ class Payment(BaseModel):
     total_amount: float
     currency: str
     status: str
-    cart: Cart
+    cart: Optional[Cart] = None 
     card: Card
     customer: Customer
