@@ -1,14 +1,14 @@
 from fastapi import APIRouter, Depends
 from external_services.payment_service import create_checkout_session
 from middlewares.auth_v2 import require_user
-from repositories.subscription_repository import get_all_subscriptions
+from repositories.subscription_repository import get_all_subscriptions_by_user
 
 
 subscription_router = APIRouter(prefix="/subscriptions", tags=["subscriptions"])
 
 @subscription_router.get("/")
 async def get_subscriptions(current_user=Depends(require_user)):
-    return await get_all_subscriptions()
+    return await get_all_subscriptions_by_user((current_user["user_id"]))
 
 @subscription_router.get("/generate-session/{product_id}")
 async def generate_session(product_id: str = None, current_user=Depends(require_user)):

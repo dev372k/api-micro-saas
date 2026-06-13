@@ -13,6 +13,6 @@ async def upsert_payment(data: Payment):
     )
     return GenericResponse(success=True, message="Payment upserted successfully")
     
-async def get_all_payments():
-    payments = await collection.find({}, {"_id": 0}).to_list(length=None)
+async def get_all_payments_by_user(user_id):
+    payments = await collection.find({"user_id": user_id}, {"_id": 0}).to_list(length=None)
     return GenericResponse(success=True, message="Payments retrieved successfully", data=payments)

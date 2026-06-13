@@ -13,7 +13,7 @@ async def upsert_subscription(data: Subscription):
     )
     return GenericResponse(success=True, message="Subscription upserted successfully")
 
-async def get_all_subscriptions():
-    subscriptions = await collection.find({}, {"_id": 0}).to_list(length=None)
+async def get_all_subscriptions_by_user(user_id):
+    subscriptions = await collection.find({"user_id": user_id}, {"_id": 0}).to_list(length=None)
     return GenericResponse(success=True, message="Subscriptions retrieved successfully", data=subscriptions)
     
