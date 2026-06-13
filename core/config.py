@@ -5,11 +5,8 @@ class Settings(BaseSettings):
     VERSION:str = ""
     ENVIRONMENT: str = ""
     LOG_LEVEL: str = ""
-<<<<<<< Updated upstream
     OPENROUTER_MODEL: str = ""
     OPENROUTER_API_KEY: str = ""
-    RAPIDAPI_PROXY_SECRET_KEY: str = ""
-=======
     MONGODB_URI: str = ""
     MONGODB_DB_NAME: str = ""
     X_API_KEY: str = ""
@@ -21,7 +18,6 @@ class Settings(BaseSettings):
     DODO_ENVIRONMENT: str = ""
     DODO_PRODUCT_ID_1: str = "pdt_0NgK79FCaFT39EWSzQDOh"
     DODO_PRODUCT_ID_2: str = "pdt_0NgK79FCaFT39EWSzQDOh"
->>>>>>> Stashed changes
 
     class Config:
         env_file = ".env"

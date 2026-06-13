@@ -3,6 +3,7 @@ from services.dodo.payment_service import create_checkout_session
 from middlewares.api_guard import require_user
 from repositories.subscription_repository import get_all_subscriptions_by_user
 
+
 subscription_router = APIRouter(prefix="/subscriptions", tags=["subscriptions"])
 
 @subscription_router.get("/")

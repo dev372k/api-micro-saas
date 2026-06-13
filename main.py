@@ -1,28 +1,29 @@
 from fastapi import FastAPI
-from routes.routes import router
+from fastapi.responses import JSONResponse
+from routes.user_route import user_router
+from routes.subscription_route import subscription_router
+from routes.payment_route import payment_router
+from routes.webhook_route import webhook_router
+from routes.module_route import module_router
 from core.config import settings
 from core.logging import logger
-from middlewares.auth import RapidAPIAuthMiddleware
+from middlewares.auth import AuthMiddleware
 
 app = FastAPI(title=settings.APP_NAME)
 
-app.add_middleware(RapidAPIAuthMiddleware)
-app.include_router(router)
+app.add_middleware(AuthMiddleware)
+app.include_router(user_router)
+app.include_router(module_router)
+app.include_router(subscription_router)
+app.include_router(payment_router)
+app.include_router(webhook_router)
 
 @app.get("/")
 def root():
     logger.info("Root endpoint called")
-    return {
+
+    return JSONResponse(status_code=200, content={
         "name": settings.APP_NAME,
         "version": settings.VERSION,
         "environment": settings.ENVIRONMENT,
-    }
-
-@app.get("/health")
-def health():
-    logger.info("Health endpoint called")
-    return {
-        "status": "ok"
-    }
-
-
+    })
