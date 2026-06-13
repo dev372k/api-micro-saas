@@ -1,6 +1,8 @@
 fastapi
 uvicorn[standard]
 pydantic-settings
+pydantic
+email-validator
 httpx 
 google-auth 
 google-auth-oauthlib
