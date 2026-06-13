@@ -8,6 +8,9 @@ class Settings(BaseSettings):
     MONGODB_URI: str = ""
     MONGODB_DB_NAME: str = ""
     X_API_KEY: str = ""
+    SECRET_KEY: str = ""
+    ALGORITHM: str = ""
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 0
     DODO_API_KEY : str = ""
     DODO_PRODUCT_ID_1: str = "pdt_0NgK79FCaFT39EWSzQDOh"
     DODO_PRODUCT_ID_2: str = "pdt_0NgK79FCaFT39EWSzQDOh"

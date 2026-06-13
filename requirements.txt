@@ -4,8 +4,13 @@ pydantic-settings
 httpx 
 google-auth 
 google-auth-oauthlib
+langchain
+langchain-community
+langchain-openrouter
 stripe
 motor
 pymongo
 dodopayments
 certifi
+argon2-cffi
+pyjwt

@@ -1,5 +1,6 @@
 from core.database import client
 from schemas.payment_schema import Payment
+from commons.response import GenericResponse
 
 db = client.get_default_database()
 collection = db["payments"]
@@ -10,6 +11,8 @@ async def upsert_payment(data: Payment):
         {"$set": data.model_dump()},
         upsert=True
     )
+    return GenericResponse(success=True, message="Payment upserted successfully")
     
 async def get_all_payments():
-    return await collection.find({}, {"_id": 0}).to_list(length=None)
+    payments = await collection.find({}, {"_id": 0}).to_list(length=None)
+    return GenericResponse(success=True, message="Payments retrieved successfully", data=payments)

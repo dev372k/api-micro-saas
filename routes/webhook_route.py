@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Request
 from core.logging import logger
 from schemas.customer_schema import Customer
-from schemas.cart_schema import Cart
 from schemas.card_schema import Card
 from commons.enums import SubscriptionEvent, PaymentEvent
 from schemas.subscription_schema import Subscription
