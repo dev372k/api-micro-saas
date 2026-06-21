@@ -1,4 +1,4 @@
-from stripe_client import StripeClient
+from services.stripe.stripe_client import StripeClient
 
 class RevenueService:
 
@@ -21,10 +21,7 @@ class RevenueService:
 
         mrr = 0
 
-        subscriptions = self.client.subscriptions.list(
-            status="active",
-            limit=100
-        )
+        subscriptions = self.client.subscriptions.list()
 
         for sub in subscriptions.auto_paging_iter():
 

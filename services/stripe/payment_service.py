@@ -1,4 +1,4 @@
-from stripe_client import StripeClient
+from services.stripe.stripe_client import StripeClient
 
 class PaymentService:
 

@@ -15,3 +15,6 @@ class PaymentEvent(str, Enum):
     FAILED = "payment.failed"
     PROCESSING = "payment.processing"
     SUCCEEDED = "payment.succeeded"
+
+class ModuleType(str, Enum):
+    STRIPE = "stripe"

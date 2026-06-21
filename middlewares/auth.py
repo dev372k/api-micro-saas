@@ -18,15 +18,15 @@ class AuthMiddleware(BaseHTTPMiddleware):
         if request.url.path in public_paths:
             return await call_next(request)
 
-        rapidapi_proxy_secret_key = request.headers.get("X-RapidAPI-Proxy-Secret")
+        rapidapi_proxy_secret_key = request.headers.get("X-API-KEY")
 
         if not rapidapi_proxy_secret_key:
             return JSONResponse(
                 status_code=401,
-                content={"detail": "Missing X-RapidAPI-Proxy-Secret"}
+                content={"detail": "Missing X-API-KEY"}
             )
 
-        expected_key = settings.RAPIDAPI_PROXY_SECRET_KEY
+        expected_key = settings.X_API_KEY
 
         if rapidapi_proxy_secret_key != expected_key:
             return JSONResponse(
